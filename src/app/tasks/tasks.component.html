@@ -1,0 +1,37 @@
+<!-- app.component.html -->
+<div class="container">
+    <h1>Task Management</h1>
+  
+    <div class="p-d-flex p-ai-center">
+      <input
+        type="text"
+        pInputText
+        [(ngModel)]="newTaskName"
+        placeholder="Enter task name"
+        class="p-mr-2"
+        (keyup.enter)="addTask()"
+      />
+      <button pButton label="Add Task" icon="pi pi-plus" (click)="addTask()"></button>
+    </div>
+  
+    <p-table [value]="tasks" [rows]="5" [paginator]="true">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Actions</th>
+        </tr>
+      </ng-template>
+  
+      <ng-template pTemplate="body" let-task>
+        <tr>
+          <td>{{ task.id }}</td>
+          <td>{{ task.name }}</td>
+          <td>
+            <button pButton icon="pi pi-trash" (click)="removeTask(task.id)"></button>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+  
