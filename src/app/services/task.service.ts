@@ -13,16 +13,13 @@ export class TaskService {
   addTask(name: string): void {
     const newTask: Task = {
       id: this.tasks.length + 1,
-      name: name,
+      title: name,
     };
     this.tasks.push(newTask);
+    localStorage.setItem('tasks', JSON.stringify(this.tasks));
   }
 
   removeTask(taskId: number): void {
     this.tasks = this.tasks.filter(task => task.id !== taskId);
-  }
-
-  getTasks(): Task[] {
-    return [...this.tasks];
   }
 }
